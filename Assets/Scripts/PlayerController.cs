@@ -4,11 +4,16 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 	public float speed;
 	public float padding;
-	
+	public GameObject beam;
+	public float projectileSpeed;
+	public float firingRate;
+
 	float xMin;
 	float xMax;
 	float yMin;
 	float yMax;
+
+	private static string fireLazerMethodName = "FireLaser";
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +30,12 @@ public class PlayerController : MonoBehaviour {
 		yMax = upMost.y - padding;
 		
 	}
-	
+
+	void FireLaser(){
+		GameObject laser = (GameObject)Instantiate(beam, transform.position, Quaternion.identity);
+		laser.rigidbody2D.velocity = new Vector3(0, projectileSpeed, 0);
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKey(KeyCode.LeftArrow)){
@@ -44,7 +54,14 @@ public class PlayerController : MonoBehaviour {
 //			transform.position += new Vector3(0.0f, -speed * Time.deltaTime, 0.0f);
 			transform.position += Vector3.down * speed * Time.deltaTime;
 		}
-		
+
+		if(Input.GetKeyDown(KeyCode.Space)){
+			InvokeRepeating(fireLazerMethodName, 0.000001f, firingRate);
+		}
+		if(Input.GetKeyUp(KeyCode.Space)){
+			CancelInvoke(fireLazerMethodName);
+		}
+
 		// Restricts player movement to play space :)
 		float newX = Mathf.Clamp(transform.position.x, xMin, xMax);
 		float newY = Mathf.Clamp(transform.position.y, yMin, yMax );

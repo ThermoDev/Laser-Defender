@@ -1,8 +1,13 @@
-/library
-/temp
-/assets/fonts
-/assets/Sounds
+/library/
+/temp/
+/assets/fonts/
+/assets/Sounds/
 *.png
 *.meta
 *.sln
 *.csproj
+.sln
+.csproj
+/*.csproj
+/*.sln
+/.sln
