@@ -4,3 +4,5 @@
 /assets/Sounds
 *.png
 *.meta
+*.sln
+*.csproj
