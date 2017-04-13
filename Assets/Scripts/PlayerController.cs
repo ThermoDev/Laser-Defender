@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour {
 	public GameObject beam;
 	public float projectileSpeed;
 	public float firingRate;
+	public EnemyProjectile enemyProjectile;
+
+	public float health;
 
 	float xMin;
 	float xMax;
@@ -32,7 +35,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FireLaser(){
-		GameObject laser = (GameObject)Instantiate(beam, transform.position, Quaternion.identity);
+		Vector3 offset = new Vector3(0,0.4f);
+		GameObject laser = (GameObject)Instantiate(beam, transform.position + offset, Quaternion.identity);
 		laser.rigidbody2D.velocity = new Vector3(0, projectileSpeed, 0);
 	}
 
@@ -67,4 +71,18 @@ public class PlayerController : MonoBehaviour {
 		float newY = Mathf.Clamp(transform.position.y, yMin, yMax );
 		transform.position = new Vector3(newX, newY, transform.position.z);
 	}
+
+	void OnTriggerEnter2D(Collider2D collider){
+		enemyProjectile = collider.gameObject.GetComponent<EnemyProjectile>();
+		if(enemyProjectile != null){
+			health -= enemyProjectile.GetDamage();
+			enemyProjectile.Hit();
+			
+			if(health <= 0){
+				Destroy(gameObject);
+			}
+			print ("Woot");
+		}
+	}
+
 }

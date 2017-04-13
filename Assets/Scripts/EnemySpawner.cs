@@ -48,5 +48,8 @@ public class EnemySpawner : MonoBehaviour {
 		}else{
 			transform.position += Vector3.left * speed * Time.deltaTime;
 		}
+	
 	}
+
+
 }
