@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EnemyShipController : MonoBehaviour {
 	private Projectile projectile;
@@ -8,11 +9,12 @@ public class EnemyShipController : MonoBehaviour {
 	public float projectileSpeed;
 	public float firingRate;
 	public float shotsPerSecond = 0.5f;
-
-	private static string fireLazerMethodName = "FireLaser";
+	public int scorePoints = 150;
+	
+	private ScoreKeeper scoreKeeper;
 	
 	void Start() {
-
+		scoreKeeper = (ScoreKeeper) GameObject.Find("Score").GetComponent<ScoreKeeper>();
 	}
 
 	void Update () {
@@ -20,6 +22,7 @@ public class EnemyShipController : MonoBehaviour {
 		if(Random.value < probability){
 			FireLaser();
 		}
+		
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
@@ -30,6 +33,7 @@ public class EnemyShipController : MonoBehaviour {
 
 			if(health <= 0){
 				Destroy(gameObject);
+				scoreKeeper.Score(scorePoints);
 			}
 			print ("Woot");
 		}

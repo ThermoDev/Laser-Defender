@@ -7,8 +7,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject beam;
 	public float projectileSpeed;
 	public float firingRate;
-	public EnemyProjectile enemyProjectile;
-
+	private EnemyProjectile enemyProjectile;
 	public float health;
 
 	float xMin;
@@ -54,7 +53,7 @@ public class PlayerController : MonoBehaviour {
 //			transform.position += new Vector3(0.0f, +speed * Time.deltaTime, 0.0f);
 			transform.position += Vector3.up * speed * Time.deltaTime;
 		}
-		if(Input.GetKey(KeyCode.DownArrow	)){
+		if(Input.GetKey(KeyCode.DownArrow)){
 //			transform.position += new Vector3(0.0f, -speed * Time.deltaTime, 0.0f);
 			transform.position += Vector3.down * speed * Time.deltaTime;
 		}
