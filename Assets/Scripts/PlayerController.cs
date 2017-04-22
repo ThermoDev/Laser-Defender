@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 		AudioSource.PlayClipAtPoint(laserSound, transform.position, 0.3f);
 		Vector3 offset = new Vector3(0,0.4f);
 		GameObject laser = (GameObject)Instantiate(beam, transform.position + offset, Quaternion.identity);
-		laser.rigidbody2D.velocity = new Vector3(0, projectileSpeed, 0);
+		laser.rigidbody2D.velocity = new Vector3(0, projectileSpeed);
 	}
 
 	// Update is called once per frame

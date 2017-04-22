@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class EnemyShipController : MonoBehaviour {
 	public AudioClip laserSound	;
-	public AudioClip explosionSound;
+	public AudioClip destroySound;
 	public float health = 100f;
 	public GameObject beam;
 	public float projectileSpeed;
@@ -34,7 +34,7 @@ public class EnemyShipController : MonoBehaviour {
 			projectile.Hit();
 
 			if(health <= 0){
-				AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+				AudioSource.PlayClipAtPoint(destroySound, transform.position);
 				Destroy(gameObject);
 				scoreKeeper.Score(scorePoints);
 			}
