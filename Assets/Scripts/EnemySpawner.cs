@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour {
 	public GameObject enemyPrefab;
+
 	public float width = 10f;
 	public float height = 5f;
 	public float padding;

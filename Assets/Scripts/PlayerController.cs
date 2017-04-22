@@ -2,12 +2,15 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
+	public AudioClip laserSound;
+	public AudioClip explosionSound;
+	public GameObject beam;
+	private EnemyProjectile enemyProjectile;
+
 	public float speed;
 	public float padding;
-	public GameObject beam;
 	public float projectileSpeed;
 	public float firingRate;
-	private EnemyProjectile enemyProjectile;
 	public float health;
 
 	float xMin;
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FireLaser(){
+		AudioSource.PlayClipAtPoint(laserSound, transform.position, 0.3f);
 		Vector3 offset = new Vector3(0,0.4f);
 		GameObject laser = (GameObject)Instantiate(beam, transform.position + offset, Quaternion.identity);
 		laser.rigidbody2D.velocity = new Vector3(0, projectileSpeed, 0);
@@ -78,6 +82,7 @@ public class PlayerController : MonoBehaviour {
 			enemyProjectile.Hit();
 			
 			if(health <= 0){
+				AudioSource.PlayClipAtPoint(explosionSound, transform.position, 0.5f);
 				Destroy(gameObject);
 			}
 			print ("Woot");
